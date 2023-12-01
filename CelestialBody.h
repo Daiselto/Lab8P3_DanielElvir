@@ -15,5 +15,6 @@ public:
 	CelestialBody();
 	CelestialBody(string, double, double, double, double, double, double, double, double);
 	virtual ~CelestialBody();
+	CelestialBody* operator + (const CelestialBody* planeta2);
 };
 
