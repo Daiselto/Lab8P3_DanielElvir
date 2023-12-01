@@ -14,7 +14,6 @@ public:
 	double VelocidadZ;
 	CelestialBody();
 	CelestialBody(string, double, double, double, double, double, double, double, double);
-	~CelestialBody();
-	virtual string toString();
+	virtual ~CelestialBody();
 };
 

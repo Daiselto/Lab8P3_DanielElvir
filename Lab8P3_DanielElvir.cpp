@@ -80,21 +80,53 @@ void agregarPlaneta() {
         cout << "Ingrese la Velocidad Z del Planeta" << endl;
         cin >> VelocidadZ;
     }
-    cout << "Ingrese que tipo de planeta es (puede ser rocoso o gaseoso)" << endl;
-    cin >> tipo;
-    while (tipo!="gaseoso" && tipo!="rocoso" && tipo != "Gasesoso" && tipo!= "Rocoso") {
-        cout << "El tipo tiene que ser rocoso o gaseoso" << endl; cout << "Ingrese que tipo de planeta es (puede ser rocoso o gaseoso)" << endl;
-        cin >> tipo;
+    int tipoOpcion;
+    cout << "Ingrese que tipo de planeta es " << endl;
+    cout << "1. Rocoso" << endl;
+    cout << "2. Gasesoso" << endl;
+    cout << "Ingrese una opcion valida" << endl;
+    cin >> tipoOpcion;
+    while (tipoOpcion<1||tipoOpcion>2) {
+        cout << "Ingrese una opcion valida" << endl;
+        cout << "Ingrese que tipo de planeta es " << endl;
+        cout << "1. Rocoso" << endl;
+        cout << "2. Gasesoso" << endl;
+        cout << "Ingrese una opcion valida" << endl;
+        cin >> tipoOpcion;
     }
+
+    switch (tipoOpcion) {
+    case 1:
+        tipo = "Rocoso";
+        break;
+    case 2:
+        tipo = "Gaseoso";
+        break;
+    default:
+        break;
+    }    
     cout << "El planeta tiene atmosfera? (Ingrese 1 para verdadero y 0 para falso)" << endl;
+    cout << "1. Si tiene" << endl;
+    cout << "2. No tiene" << endl;
+    cout << "Ingrese una opcion valida" << endl;
     cin >> validacion;
-    while (validacion<0||validacion>1) {
+    while (validacion<1||validacion>2) {
         cout << "Tiene que ser un valor entre 0 y 1" << endl;
         cout << "El planeta tiene atmosfera? (Ingrese 1 para verdadero y 0 para falso)" << endl;
         cin >> validacion;
     }
 
-    presenciaAtmosfera = validacion;
+    switch (validacion)
+    {
+    case 1:
+        presenciaAtmosfera = true;
+        break;
+    case 2:
+        presenciaAtmosfera = false;
+        break;
+    default:
+        break;
+    }
 
     CelestialBody* plan = new Planeta(nombre, masa, radio, PosicionX, PosicionY, PosicionZ, VelocidadX, VelocidadY, VelocidadZ, tipo, presenciaAtmosfera);
     cuerposCelestiales.push_back(plan);
@@ -298,33 +330,49 @@ void agregarCP() {
 }
 
 void listarCuerpos() {
-    if (cuerposCelestiales.size()<0) {
-        cout << "Tiene que ingresar un cuerpo primero" << endl;        
-    }
-    else {
+    if (cuerposCelestiales.size()>0) {
+           
         int cont = 0;
         for (CelestialBody* wows : cuerposCelestiales) {
             Planeta* tempPlaneta = dynamic_cast<Planeta*>(wows);
             Estrella* tempEstrella = dynamic_cast<Estrella*>(wows);
             Satelite* tempSatelite = dynamic_cast<Satelite*>(wows);
-            if (tempPlaneta!=nullptr) {
+            if (tempPlaneta != nullptr) {
                 cout << ++cont << "- ";
-                cout << tempPlaneta->toString() << endl;
+                cout << "Planeta " + tempPlaneta->nombre + "(Masa: " + to_string(tempPlaneta->masa) + ", Radio: " + to_string(tempPlaneta->radio) + ", Posición(" + to_string(tempPlaneta->PosicionX) + ", " + to_string(tempPlaneta->PosicionY) + ", " + to_string(tempPlaneta->PosicionZ) + "), Velocidad(" + to_string(tempPlaneta->VelocidadX) + ", " + to_string(tempPlaneta->VelocidadY) + ", " + to_string(tempPlaneta->VelocidadZ) + "), Tipo: " + tempPlaneta->tipo + ", Atmosfera:" + to_string(tempPlaneta->presenciaAtmosfera) + ")" << endl;
             }
             if (tempEstrella != nullptr) {
                 cout << ++cont << "- ";
-                cout << tempEstrella->toString() << endl;
+                cout << "Estrella " + tempEstrella->nombre + "(Masa: " + to_string(tempEstrella->masa) + ", Radio: " + to_string(tempEstrella->radio) + ", Posición(" + to_string(tempEstrella->PosicionX) + ", " + to_string(tempEstrella->PosicionY) + ", " + to_string(tempEstrella->PosicionZ) + "), Velocidad(" + to_string(tempEstrella->VelocidadX) + ", " + to_string(tempEstrella->VelocidadY) + ", " + to_string(tempEstrella->VelocidadZ) + "), Luminosidad: " + to_string(tempEstrella->luminosidad) + ", Tipo Espectral:" + tempEstrella->tipoEspectral + ")" << endl;
             }
             if (tempSatelite != nullptr) {
                 cout << ++cont << "- ";
-                cout << tempSatelite->toString() << endl;
+                cout << "Satelite " + tempSatelite->nombre + "(Masa: " + to_string(tempSatelite->masa) + ", Radio: " + to_string(tempSatelite->radio) + ", Posición(" + to_string(tempSatelite->PosicionX) + ", " + to_string(tempSatelite->PosicionY) + ", " + to_string(tempSatelite->PosicionZ) + "), Velocidad(" + to_string(tempSatelite->VelocidadX) + ", " + to_string(tempSatelite->VelocidadY) + ", " + to_string(tempSatelite->VelocidadZ) + "), Cuerpo Principal: " + tempSatelite->cuerpoPrincipal + ")" << endl;
             }
         }
+    }
+    else {
+        cout << "Tiene que ingresar un cuerpo primero" << endl;
     }
 }
 
 void eliminarCuerpos() {
-
+    if (cuerposCelestiales.size()>0) {
+        listarCuerpos();
+        int indice;
+        cout << "Ingrese el cuerpo que desea eliminar" << endl;
+        cin >> indice;
+        if (indice>=1&&indice<cuerposCelestiales.size()) {
+            delete cuerposCelestiales[indice - 1];
+            cuerposCelestiales.erase(cuerposCelestiales.begin() + indice - 1);
+            cout << endl;
+            cout << "Eliminado exitosamente" << endl;
+            cout << endl;
+        }
+    }
+    else {
+        cout << "Tiene que ingresar un cuerpo primero para eliminar" << endl;
+    }
 }
 
 void fusionarCuerpos() {

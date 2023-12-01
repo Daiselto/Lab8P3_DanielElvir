@@ -7,6 +7,5 @@ public:
 	Estrella();
 	Estrella(string, double, double, double, double, double, double, double, double, double, string);
 	~Estrella();
-	string toString();
 };
 

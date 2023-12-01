@@ -19,8 +19,6 @@ CelestialBody::~CelestialBody()
 {
 }
 
-string CelestialBody::toString() {
-	return	"Esto no we";
-}
+
 
 
