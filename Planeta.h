@@ -7,5 +7,6 @@ public:
 	Planeta();
 	Planeta(string, double, double, double, double, double, double, double, double, string, bool);
 	~Planeta();
+	string toString();
 };
 

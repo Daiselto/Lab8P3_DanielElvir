@@ -12,3 +12,7 @@ Satelite::Satelite(string _nombre, double _masa, double _radio, double _Posicion
 Satelite::~Satelite()
 {
 }
+
+string Satelite::toString(){
+	return "Satelite " + nombre + "(Masa: " + to_string(masa) + ", Radio: " + to_string(radio) + ", Posición(" + to_string(PosicionX) + ", " + to_string(PosicionY) + ", " + to_string(PosicionZ) + "), Velocidad(" + to_string(VelocidadX) + ", " + to_string(VelocidadY) + ", " + to_string(VelocidadZ) + "), Cuerpo Principal: " + cuerpoPrincipal + ")";
+}

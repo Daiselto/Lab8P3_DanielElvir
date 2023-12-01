@@ -6,5 +6,6 @@ public:
 	Satelite();
 	Satelite(string, double, double, double, double, double, double, double, double, string);
 	~Satelite();
+	string toString();
 };
 

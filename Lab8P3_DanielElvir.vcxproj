@@ -127,7 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CelestialBody.cpp" />
+    <ClCompile Include="Estrella.cpp" />
     <ClCompile Include="Lab8P3_DanielElvir.cpp" />
+    <ClCompile Include="Planeta.cpp" />
+    <ClCompile Include="Satelite.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CelestialBody.h" />
+    <ClInclude Include="Estrella.h" />
+    <ClInclude Include="Planeta.h" />
+    <ClInclude Include="Satelite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

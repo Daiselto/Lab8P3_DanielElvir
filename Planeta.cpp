@@ -13,4 +13,8 @@ Planeta::~Planeta() {
 	
 }
 
+string Planeta::toString() {
+	return "Planeta " + nombre + "(Masa: " + to_string(masa) + ", Radio: " + to_string(radio) + ", Posición(" + to_string(PosicionX) + ", " + to_string(PosicionY) + ", " + to_string(PosicionZ)+"), Velocidad(" + to_string(VelocidadX) + ", " + to_string(VelocidadY) + ", " + to_string(VelocidadZ) + "), Tipo: " + tipo + ", Atmosfera:" + to_string(presenciaAtmosfera)+")";
+}
+
 

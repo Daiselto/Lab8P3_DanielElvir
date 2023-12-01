@@ -13,3 +13,7 @@ Estrella::Estrella(string _nombre, double _masa, double _radio, double _Posicion
 Estrella::~Estrella()
 {
 }
+
+string Estrella::toString() {
+	return "Estrella " + nombre + "(Masa: " + to_string(masa) + ", Radio: " + to_string(radio) + ", Posición(" + to_string(PosicionX) + ", " + to_string(PosicionY) + ", " + to_string(PosicionZ) + "), Velocidad(" + to_string(VelocidadX) + ", " + to_string(VelocidadY) + ", " + to_string(VelocidadZ) + "), Luminosidad: " + to_string(luminosidad) + ", Tipo Espectral:" + tipoEspectral + ")";
+}
