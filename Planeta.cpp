@@ -14,17 +14,18 @@ Planeta::~Planeta() {
 }
 
 bool Planeta::operator>(const Planeta* otro) {
-	if (this->presenciaAtmosfera==true && otro->presenciaAtmosfera==false) {
+	if ((this->presenciaAtmosfera==true) && (otro->presenciaAtmosfera==false)) {
 		return true;
 	} 
-	if (this->presenciaAtmosfera == false && otro->presenciaAtmosfera == true) {
+	if ((this->presenciaAtmosfera == false) && (otro->presenciaAtmosfera == true)) {
 		return false;
 	} 
+
 	if ((this->presenciaAtmosfera == false && otro->presenciaAtmosfera == false) || (this->presenciaAtmosfera == true && otro->presenciaAtmosfera == true)) {
-		if (this->tipo == "Rocoso" && otro->tipo=="Gaseoso") {
+		if ((this->tipo == "Rocoso") && (otro->tipo=="Gaseoso")) {
 			return true;
 		}
-		else if (this->tipo == "Gaseoso" && otro->tipo == "Rocoso") {
+		else if ((this->tipo == "Gaseoso") && (otro->tipo == "Rocoso")) {
 			return false;
 		} else if ((this->tipo == "Gaseoso" && otro->tipo == "Gaseoso")||(this->tipo == "Rocoso" && otro->tipo == "Rocoso")) {
 			return false;

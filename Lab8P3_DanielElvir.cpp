@@ -430,13 +430,65 @@ void fusionarCuerpos() {
 }
 
 void compararHabitabilidad() {
-    cout << "Seleccione dos planetas" << endl;
-    listarCuerpos();
+    if (cuerposCelestiales.size() > 1) {
+        int indice1, indice2;
+        cout << "Seleccione dos planetas" << endl;
+        cout << endl;
+        int cont = 0;
+        for (CelestialBody* wows : cuerposCelestiales) {
+            Planeta* tempPlaneta = dynamic_cast<Planeta*>(wows);
+            Estrella* tempEstrella = dynamic_cast<Estrella*>(wows);
+            Satelite* tempSatelite = dynamic_cast<Satelite*>(wows);
+            if (tempPlaneta != nullptr) {
+                cout << ++cont << "- ";
+                cout << "Planeta " + tempPlaneta->nombre + "(Masa: " + to_string(tempPlaneta->masa) + ", Radio: " + to_string(tempPlaneta->radio) + ", Posición(" + to_string(tempPlaneta->PosicionX) + ", " + to_string(tempPlaneta->PosicionY) + ", " + to_string(tempPlaneta->PosicionZ) + "), Velocidad(" + to_string(tempPlaneta->VelocidadX) + ", " + to_string(tempPlaneta->VelocidadY) + ", " + to_string(tempPlaneta->VelocidadZ) + "), Tipo: " + tempPlaneta->tipo + ", Atmosfera:" + to_string(tempPlaneta->presenciaAtmosfera) + ")" << endl;
+            } else if (tempEstrella != nullptr) {
+                cout << ++cont;
+            } else if (tempSatelite != nullptr) {
+                cout << ++cont;
+            } else {
+                cout << ++cont;
+            }
+        }
+        cout << endl;
+        cout << "Cuerpo 1:";
+        cin >> indice1;
+        cout << "Cuerpo 2:";
+        cin >> indice2;
+        if (cuerposCelestiales[indice1 - 1] > cuerposCelestiales[indice2 - 1]) {
+            cout << "Planeta " << cuerposCelestiales[indice2 - 1]->nombre << " es más habitable que Planeta " << cuerposCelestiales[indice1 - 1]->nombre << endl;
+        } else {
+            cout << "Planeta " << cuerposCelestiales[indice1 - 1]->nombre << " es más habitable que Planeta " << cuerposCelestiales[indice2 - 1]->nombre << endl;
+        }
+    }
+    else {
+        cout << "Tiene que ingresar 2 planetas para comparar" << endl;
+    }
+    
 
 }
 
 void compararCuerpos() {
+    if (cuerposCelestiales.size()>1) {
+        int indice1, indice2;
+        cout << "Seleccione dos cuerpos celestes " << endl;
+        listarCuerpos();
+        cout << endl;
+        cout << "Cuerpo 1:";
+        cin >> indice1;
+        cout << "Cuerpo 2:";
+        cin >> indice2;
+        if (cuerposCelestiales[indice1-1] == cuerposCelestiales[indice2-1]) {
+            cout << cuerposCelestiales[indice1 - 1]->nombre << " y " << cuerposCelestiales[indice2 - 1]->nombre << " son dos cuerpos con caracteristicas iguales" << endl;
+        } else {
+            cout << cuerposCelestiales[indice1 - 1]->nombre << " y " << cuerposCelestiales[indice2 - 1]->nombre << " son dos cuerpos con caracteristicas diferentes" << endl;
 
+        }
+    }
+    else {
+        cout << "Tiene que ingresar 2 cuerpos celestes para ingresar a esta opcion" << endl;
+    }
+    
 }
 
 void menu() {

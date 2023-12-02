@@ -33,6 +33,12 @@ CelestialBody* CelestialBody::operator+(const CelestialBody* planeta2) {
 	return fusionado;
 }
 
+bool CelestialBody::operator==(const CelestialBody* otro) {
+	if ((this->masa==otro->masa)&&(this->radio==otro->radio)&&(this->PosicionX==otro->PosicionX)&&(this->PosicionY == otro->PosicionY)&&(this->PosicionZ == otro->PosicionZ)&&(this->PosicionZ == otro->PosicionZ)&&(this->VelocidadX==otro->VelocidadX)&&(this->VelocidadZ == otro->VelocidadY)&&) {
+
+	}
+}
+
 
 
 
