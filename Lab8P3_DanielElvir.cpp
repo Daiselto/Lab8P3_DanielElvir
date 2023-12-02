@@ -8,6 +8,10 @@
 using namespace std;
 
 static vector<CelestialBody*> cuerposCelestiales;
+static CelestialBody* plan;
+static CelestialBody* estre;
+static CelestialBody* sat;
+
 
 void agregarPlaneta() {
     string nombre;
@@ -128,7 +132,7 @@ void agregarPlaneta() {
         break;
     }
 
-    CelestialBody* plan = new Planeta(nombre, masa, radio, PosicionX, PosicionY, PosicionZ, VelocidadX, VelocidadY, VelocidadZ, tipo, presenciaAtmosfera);
+    plan = new Planeta(nombre, masa, radio, PosicionX, PosicionY, PosicionZ, VelocidadX, VelocidadY, VelocidadZ, tipo, presenciaAtmosfera);
     cuerposCelestiales.push_back(plan);
     cout << endl;
     cout << "Planeta " << nombre << " agregado exitosamente" << endl;
@@ -215,7 +219,7 @@ void agregarEstrella() {
     cout << "Ingrese el Tipo Espectral de la estrella" << endl;
     cin >> TipoEspectral;
 
-    CelestialBody* estre = new Estrella(nombre, masa, radio, PosicionX, PosicionY, PosicionZ, VelocidadX, VelocidadY, VelocidadZ, Luminosidad, TipoEspectral);
+    estre = new Estrella(nombre, masa, radio, PosicionX, PosicionY, PosicionZ, VelocidadX, VelocidadY, VelocidadZ, Luminosidad, TipoEspectral);
     cuerposCelestiales.push_back(estre);
     cout << endl;
     cout << "Estrella " << nombre << " agregado exitosamente" << endl;
@@ -296,7 +300,7 @@ void agregarSatelite() {
     cout << "Ingrese el nombre del cuerpo celestial más cercano" << endl;
     cin >> CuerpoPrincipal;
 
-    CelestialBody* sat = new Satelite(nombre, masa, radio, PosicionX, PosicionY, PosicionZ, VelocidadX, VelocidadY, VelocidadZ, CuerpoPrincipal);
+    sat = new Satelite(nombre, masa, radio, PosicionX, PosicionY, PosicionZ, VelocidadX, VelocidadY, VelocidadZ, CuerpoPrincipal);
     cuerposCelestiales.push_back(sat);
 
     cout << endl;
@@ -339,19 +343,19 @@ void listarCuerpos() {
             Satelite* tempSatelite = dynamic_cast<Satelite*>(wows);
             if (tempPlaneta != nullptr) {
                 cout << ++cont << "- ";
-                cout << "Planeta " + tempPlaneta->nombre + "(Masa: " + to_string(tempPlaneta->masa) + ", Radio: " + to_string(tempPlaneta->radio) + ", Posición(" + to_string(tempPlaneta->PosicionX) + ", " + to_string(tempPlaneta->PosicionY) + ", " + to_string(tempPlaneta->PosicionZ) + "), Velocidad(" + to_string(tempPlaneta->VelocidadX) + ", " + to_string(tempPlaneta->VelocidadY) + ", " + to_string(tempPlaneta->VelocidadZ) + "), Tipo: " + tempPlaneta->tipo + ", Atmosfera:" + to_string(tempPlaneta->presenciaAtmosfera) + ")" << endl;
+                cout << "Planeta " << tempPlaneta->nombre << "(Masa: " << tempPlaneta->masa << ", Radio: " << tempPlaneta->radio << ", Posición(" << tempPlaneta->PosicionX << ", " << tempPlaneta->PosicionY << ", " << tempPlaneta->PosicionZ << "), Velocidad(" << tempPlaneta->VelocidadX << ", " << tempPlaneta->VelocidadY << ", " << tempPlaneta->VelocidadZ << "), Tipo: " << tempPlaneta->tipo << ", Atmosfera:"  << tempPlaneta->presenciaAtmosfera << ")" << endl;
             }else
             if (tempEstrella != nullptr) {
                 cout << ++cont << "- ";
-                cout << "Estrella " + tempEstrella->nombre + "(Masa: " + to_string(tempEstrella->masa) + ", Radio: " + to_string(tempEstrella->radio) + ", Posición(" + to_string(tempEstrella->PosicionX) + ", " + to_string(tempEstrella->PosicionY) + ", " + to_string(tempEstrella->PosicionZ) + "), Velocidad(" + to_string(tempEstrella->VelocidadX) + ", " + to_string(tempEstrella->VelocidadY) + ", " + to_string(tempEstrella->VelocidadZ) + "), Luminosidad: " + to_string(tempEstrella->luminosidad) + ", Tipo Espectral:" + tempEstrella->tipoEspectral + ")" << endl;
+                cout << "Estrella " << tempEstrella->nombre << "(Masa: " << tempEstrella->masa << ", Radio: " << tempEstrella->radio << ", Posición(" << tempEstrella->PosicionX << ", " << tempEstrella->PosicionY << ", " << tempEstrella->PosicionZ << "), Velocidad(" << tempEstrella->VelocidadX << ", " << tempEstrella->VelocidadY << ", " << tempEstrella->VelocidadZ << "), Luminosidad: " << tempEstrella->luminosidad << ", Tipo Espectral:" << tempEstrella->tipoEspectral << ")" << endl;
             }else
             if (tempSatelite != nullptr) {
                 cout << ++cont << "- ";
-                cout << "Satelite " + tempSatelite->nombre + "(Masa: " + to_string(tempSatelite->masa) + ", Radio: " + to_string(tempSatelite->radio) + ", Posición(" + to_string(tempSatelite->PosicionX) + ", " + to_string(tempSatelite->PosicionY) + ", " + to_string(tempSatelite->PosicionZ) + "), Velocidad(" + to_string(tempSatelite->VelocidadX) + ", " + to_string(tempSatelite->VelocidadY) + ", " + to_string(tempSatelite->VelocidadZ) + "), Cuerpo Principal: " + tempSatelite->cuerpoPrincipal + ")" << endl;
+                cout << "Satelite " << tempSatelite->nombre << "(Masa: " << tempSatelite->masa << ", Radio: " << tempSatelite->radio << ", Posición(" << tempSatelite->PosicionX << ", " << tempSatelite->PosicionY << ", " << tempSatelite->PosicionZ << "), Velocidad(" << tempSatelite->VelocidadX << ", " << tempSatelite->VelocidadY << ", " << tempSatelite->VelocidadZ << "), Cuerpo Principal: " << tempSatelite->cuerpoPrincipal << ")" << endl;
             }
             else {
                 cout << ++cont << "- ";
-                cout << wows->nombre + " (Masa: " + to_string(wows->masa) + ", Radio: " + to_string(wows->radio) + ", Posición(" + to_string(wows->PosicionX) + ", " + to_string(wows->PosicionY) + ", " + to_string(wows->PosicionZ) + "), Velocidad(" + to_string(wows->VelocidadX) + ", " + to_string(wows->VelocidadY) + ", " + to_string(wows->VelocidadZ) + "))" << endl;
+                cout << wows->nombre << "(Masa: " << wows->masa << ", Radio: " << wows->radio << ", Posición(" << wows->PosicionX << ", " << wows->PosicionY << ", " << wows->PosicionZ << "), Velocidad(" << wows->VelocidadX << ", " << wows->VelocidadY << ", " << wows->VelocidadZ << "))" << endl;
             }
         }
     }
@@ -441,7 +445,7 @@ void compararHabitabilidad() {
             Satelite* tempSatelite = dynamic_cast<Satelite*>(wows);
             if (tempPlaneta != nullptr) {
                 cout << ++cont << "- ";
-                cout << "Planeta " + tempPlaneta->nombre + "(Masa: " + to_string(tempPlaneta->masa) + ", Radio: " + to_string(tempPlaneta->radio) + ", Posición(" + to_string(tempPlaneta->PosicionX) + ", " + to_string(tempPlaneta->PosicionY) + ", " + to_string(tempPlaneta->PosicionZ) + "), Velocidad(" + to_string(tempPlaneta->VelocidadX) + ", " + to_string(tempPlaneta->VelocidadY) + ", " + to_string(tempPlaneta->VelocidadZ) + "), Tipo: " + tempPlaneta->tipo + ", Atmosfera:" + to_string(tempPlaneta->presenciaAtmosfera) + ")" << endl;
+                cout << "Planeta " << tempPlaneta->nombre << "(Masa: " << tempPlaneta->masa << ", Radio: " << tempPlaneta->radio << ", Posición(" << tempPlaneta->PosicionX << ", " << tempPlaneta->PosicionY << ", " << tempPlaneta->PosicionZ << "), Velocidad(" << tempPlaneta->VelocidadX << ", " << tempPlaneta->VelocidadY << ", " << tempPlaneta->VelocidadZ << "), Tipo: " << tempPlaneta->tipo << ", Atmosfera:" << tempPlaneta->presenciaAtmosfera << ")" << endl;
             } else if (tempEstrella != nullptr) {
                 cout << ++cont;
             } else if (tempSatelite != nullptr) {
@@ -454,7 +458,7 @@ void compararHabitabilidad() {
         cout << "Cuerpo 1:";
         cin >> indice1;
         cout << "Cuerpo 2:";
-        cin >> indice2;
+        cin >> indice2;       
         if (cuerposCelestiales[indice1 - 1] > cuerposCelestiales[indice2 - 1]) {
             cout << "Planeta " << cuerposCelestiales[indice2 - 1]->nombre << " es más habitable que Planeta " << cuerposCelestiales[indice1 - 1]->nombre << endl;
         } else {
@@ -529,7 +533,11 @@ void menu() {
             cout << "Gracias por usar el programa" << endl;
             cout << "Saliendo....." << endl;
             cout << endl;
+            for (int i = 0; i < cuerposCelestiales.size(); i++){
+                delete cuerposCelestiales[i];
+            }
             seguir = false;
+            
             break;
         default:
             cout << "ERROR!" << endl;
@@ -544,4 +552,7 @@ void menu() {
 int main() {
     setlocale(LC_ALL, "spanish");
     menu();
+    delete plan;
+    delete estre;
+    delete sat;
 }

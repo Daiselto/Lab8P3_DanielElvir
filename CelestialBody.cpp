@@ -34,8 +34,11 @@ CelestialBody* CelestialBody::operator+(const CelestialBody* planeta2) {
 }
 
 bool CelestialBody::operator==(const CelestialBody* otro) {
-	if ((this->masa==otro->masa)&&(this->radio==otro->radio)&&(this->PosicionX==otro->PosicionX)&&(this->PosicionY == otro->PosicionY)&&(this->PosicionZ == otro->PosicionZ)&&(this->PosicionZ == otro->PosicionZ)&&(this->VelocidadX==otro->VelocidadX)&&(this->VelocidadZ == otro->VelocidadY)&&) {
-
+	if ((this->masa==otro->masa)&&(this->radio==otro->radio)&&(this->PosicionX==otro->PosicionX)&&(this->PosicionY == otro->PosicionY)&&(this->PosicionZ == otro->PosicionZ)&&(this->VelocidadX==otro->VelocidadX)&&(this->VelocidadY == otro->VelocidadY)&&(this->VelocidadZ==otro->VelocidadZ)) {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 
